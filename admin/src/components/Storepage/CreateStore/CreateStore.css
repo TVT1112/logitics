@@ -1,0 +1,154 @@
+/* Đặt toàn bộ form trong container */
+.form-container {
+    max-width: 70%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Bố cục của form */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Khu vực tải ảnh */
+  .add-img-upload {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+    background-color: #f9f9f9;
+  }
+  
+  .add-img-upload:hover {
+    border-color: #0056b3;
+  }
+  
+  .add-img-upload p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .add-img-upload img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .add-img-upload label {
+    cursor: pointer;
+    color: #007bff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .add-img-upload label:hover {
+    color: #0056b3;
+  }
+  
+  .form-icon {
+    font-size: 48px;
+    color: #007bff;
+  }
+  
+  /* Input styles */
+  input[type='file'] {
+    display: none;
+  }
+  
+  input[type='text'] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type='text']:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .add-store-name p,
+  .multi-fields p,
+  .form-container p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Địa chỉ multi-fields */
+  .multi-fields {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .multi-fields input {
+    flex: 1;
+  }
+  
+  /* Nút bấm */
+  .add-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Hiệu ứng toàn bộ form */
+  .form-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 15px;
+    }
+  
+    .multi-fields {
+      flex-direction: column;
+    }
+  
+    .add-img-upload img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  

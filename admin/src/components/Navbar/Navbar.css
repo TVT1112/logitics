@@ -1,0 +1,137 @@
+.navbar {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff; /* Màu nền */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+}
+
+.navbar .logo {
+    color: tomato;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Khoảng cách giữa các thành phần */
+}
+
+.navbar button {
+    background: transparent;
+    font-size: 16px;
+    color: #49557e;
+    border: 1px solid tomato;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar button:hover {
+    background-color: tomato;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-profile:hover {
+    transform: scale(1.1);
+    border-color: tomato;
+}
+
+.navbar-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa profile và icon chuông */
+}
+
+.nav-notification {
+    font-size: 1.8rem;
+    color: #49557e;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-notification:hover {
+    color: tomato;
+    transform: rotate(15deg);
+}
+
+.nav-profile-dropdown {
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 10;
+    background-color: #fff2ef;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid tomato;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+}
+
+.nav-profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nav-profile-dropdown li:hover {
+    color: tomato;
+    font-weight: bold;
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 1050px) {
+    .navbar .logo {
+        font-size: 1.3rem;
+    }
+
+    .navbar-right {
+        gap: 20px;
+    }
+
+    .navbar button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .navbar-right {
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .navbar .logo {
+        margin-bottom: 10px;
+    }
+}

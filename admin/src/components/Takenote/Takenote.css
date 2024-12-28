@@ -1,0 +1,147 @@
+/* Tổng thể */
+.takenote {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 50px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tiêu đề chính */
+  .takenote h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Phần thêm ghi chú */
+  .takenote input[type="text"] {
+    padding: 12px;
+    width: 70%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  .takenote input[type="text"]:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  .takenote button {
+    padding: 12px 30px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .takenote button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  .takenote button:active {
+    background-color: #21618c;
+    transform: translateY(0);
+  }
+  
+  /* Danh sách ghi chú */
+  .takenote ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .takenote li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .takenote li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .takenote span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .takenote input[type="checkbox"] {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .takenote button {
+    background-color: #e74c3c;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .takenote button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+  }
+  
+  .takenote button:active {
+    background-color: #a93226;
+    transform: translateY(0);
+  }
+  
+  /* Chú ý: Checkbox khi được chọn có thể thay đổi màu sắc hoặc hiệu ứng nếu muốn */
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .takenote {
+      padding: 20px;
+      width: 95%;
+    }
+  
+    .takenote h1 {
+      font-size: 28px;
+    }
+  
+    .takenote input[type="text"] {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .takenote button {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  
+    .takenote li {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .takenote input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  

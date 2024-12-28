@@ -1,0 +1,84 @@
+/* Bao bọc toàn bộ phần nội dung */
+.contain-word {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Kiểu dáng cho phần chứa kết quả */
+.result {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề của phần kết quả */
+.result h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Xóa dấu chấm đầu dòng và chỉnh sửa khoảng cách */
+.list-result {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Kiểu dáng cho từng mục trong danh sách */
+.item-result {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #555;
+}
+
+/* Kiểu dáng cho từng mục khi có khoảng cách */
+.item-result br {
+  margin: 5px 0;
+}
+
+/* Tạo hiệu ứng màu sắc cho mục lẻ và mục chẵn */
+.item-result:nth-child(odd) {
+  background-color: #f4f7f6;
+}
+
+.item-result:nth-child(even) {
+  background-color: #e8f0fe;
+}
+
+/* Nút tải file Word */
+.btn-word {
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút */
+.btn-word:hover {
+  background-color: #0056b3;
+}
+
+/* Khi nút bị vô hiệu hóa */
+.btn-word:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+}

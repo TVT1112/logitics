@@ -1,0 +1,171 @@
+/* Tổng thể */
+.target {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 50px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tiêu đề chính */
+  .target h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Phần thêm mục tiêu */
+  .target div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .target h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 20px;
+  }
+  
+  .target input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  
+  .target input:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  .target button {
+    padding: 12px 30px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  
+  .target button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  .target button:active {
+    background-color: #21618c;
+    transform: translateY(0);
+  }
+  
+  /* Bảng danh sách mục tiêu */
+  .target table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .target th,
+  .target td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .target th {
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+  }
+  
+  .target td {
+    background-color: #fff;
+  }
+  
+  .target button {
+    margin: 5px;
+  }
+  
+  .target td button {
+    background-color: #f39c12;
+    font-size: 14px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.2s;
+  }
+  
+  .target td button:hover {
+    background-color: #e67e22;
+  }
+  
+  .target td button:active {
+    background-color: #d35400;
+  }
+  
+  .target td button:nth-child(2) {
+    background-color: #27ae60;
+  }
+  
+  .target td button:nth-child(2):hover {
+    background-color: #2ecc71;
+  }
+  
+  .target td button:nth-child(3) {
+    background-color: #e74c3c;
+  }
+  
+  .target td button:nth-child(3):hover {
+    background-color: #c0392b;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .target {
+      padding: 20px;
+      width: 95%;
+    }
+  
+    .target h1 {
+      font-size: 28px;
+    }
+  
+    .target h3 {
+      font-size: 20px;
+    }
+  
+    .target table {
+      font-size: 14px;
+    }
+  
+    .target input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .target button {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  
+    .target td button {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  }
+  

@@ -1,0 +1,123 @@
+.notification {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title-noti {
+    font-size: 24px;
+    color: tomato;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .noti-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .noti-list-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 3fr 2fr 1fr 1fr; /* 5 cột */
+    gap: 20px;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: white;
+    border: 1px solid tomato;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+  
+  .noti-item-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .noti-item-column strong {
+    font-weight: bold;
+    color: tomato;
+  }
+  
+  .noti-item-column ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .noti-item-column ul li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .btn-notifi {
+    background-color: tomato;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-notifi:hover {
+    background-color: darkred;
+    transform: translateY(-2px); /* Tạo hiệu ứng đẩy nút lên khi hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .btn-notifi:active {
+    transform: translateY(0); /* Khi click thì nút trở về vị trí ban đầu */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-notifi:focus {
+    outline: none; /* Loại bỏ viền khi nút được chọn */
+  }
+  
+  @media (max-width: 1000px) {
+    .noti-list-item {
+      grid-template-columns: 1fr 1fr 2fr 2fr 1fr; /* Cải thiện bố cục trên màn hình nhỏ */
+      font-size: 14px;
+    }
+  
+    .noti-item-column {
+      font-size: 12px;
+    }
+  
+    .btn-notifi{
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .noti-item-column ul li {
+      font-size: 12px; /* Điều chỉnh kích thước font trong danh sách sản phẩm */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .noti-list-item {
+      grid-template-columns: 1fr; /* Trên màn hình nhỏ hơn, hiển thị theo một cột */
+      font-size: 12px;
+    }
+  
+    .noti-item-column {
+      font-size: 12px;
+    }
+  
+    .btn-notifi{
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .noti-item-column ul li {
+      font-size: 12px;
+    }
+  }
+  
