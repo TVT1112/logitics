@@ -1,5 +1,6 @@
 import storeModel from "../models/storeModel.js";
 import foodModel from '../models/foodModel.js'
+import bcrypt from 'bcrypt'
 
 const liststore = async (req,res)=>{
     try {
@@ -24,7 +25,67 @@ const getstoreByName= async(req,res)=>{
     }
 }
 
-
+const hash = async (req, res) => {
+    const { data, name } = req.body;
+  
+    // Chuyển đổi data thành chuỗi
+    const stringData = typeof data === "object" ? JSON.stringify(data) : data;
+    if (typeof stringData !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Data phải là chuỗi hoặc object có thể chuyển đổi thành chuỗi",
+      });
+    }
+  
+    try {
+      // Mã hóa
+      const salt = await bcrypt.genSalt(10);
+      const hashedData = await bcrypt.hash(stringData, salt);
+  
+      // Cập nhật dữ liệu
+      const result = await storeModel.updateOne(
+        { namestore: name },
+        { $set: { hash: hashedData } }
+      );
+  
+      if (result.matchedCount === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Không tìm thấy nhà kho",
+        });
+      }
+  
+      res.json({ success: true, message: "Đã mã hóa thành công", hash: hashedData });
+    } catch (error) {
+      console.error("Server error:", error);
+      res.status(500).json({ success: false, message: "Server error", error: error.message });
+    }
+  };
+  
+  const prevhash = async (req, res) => {
+    const { prevhash, name } = req.body;
+  
+    try {
+      // Cập nhật prevhash
+      const result = await storeModel.updateOne(
+        { namestore: name },
+        { $set: { prevhash: prevhash } }
+      );
+  
+      if (result.matchedCount === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Không tìm thấy nhà kho",
+        });
+      }
+  
+      res.json({ success: true, message: "Đã mã hóa thành công" });
+    } catch (error) {
+      console.error("Server error:", error);
+      res.status(500).json({ success: false, message: "Server error", error: error.message });
+    }
+  };
+  
 
 
 const updatelistproduct = async (req, res) => {
@@ -126,7 +187,9 @@ const createStore = async (req,res)=>{
         address:req.body.address,
         quantityproduct:req.body.quantityproduct,
         status:"Đang hoạt động",
-        listproduct:{}
+        listproduct:{},
+        hash:"",
+        prevhash:""
     })
     try {
         await store.save()
@@ -170,4 +233,4 @@ const deletestore= async(req,res)=>{
 
 
 
-export {liststore,createStore,updatestore,deletestore,updatelistproduct,getstoreByName,removelistproduct}
+export {liststore,createStore,updatestore,deletestore,updatelistproduct,getstoreByName,removelistproduct,hash,prevhash}

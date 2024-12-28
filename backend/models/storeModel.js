@@ -18,6 +18,12 @@ const storeSchema = new mongoose.Schema({
     },
     listproduct:{
         type:Object,default:{}
+    },
+    hash:{
+        type:String, default:""
+    },
+    prevhash:{
+        type:String,default:""
     }
 })
 

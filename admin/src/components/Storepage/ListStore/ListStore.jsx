@@ -27,16 +27,28 @@ const ListStore = ({url}) => {
 
   return (
     <div className='store-display'>
-        <h2>
-          Danh sách các nhà kho
-        </h2>
-        <div className='store-display-list'>
-            {list.map((item,index)=>{
-              return <StoreItem key={index} handleclick={()=>handlenavigate(item)} namestore={item.namestore} img={item.img} 
-              quantityproduct={item.quantityproduct} status={item.status} url={url}/>
-            })}
-        </div>
+    <h2>
+      Danh sách các nhà kho
+    </h2>
+    <div className='store-display-list'>
+      {list
+        .filter((item) => item.namestore !== "first block") // Lọc bỏ "first block"
+        .map((item, index) => {
+          return (
+            <StoreItem
+              key={index}
+              handleclick={() => handlenavigate(item)}
+              namestore={item.namestore}
+              img={item.img}
+              quantityproduct={item.quantityproduct}
+              status={item.status}
+              url={url}
+            />
+          );
+        })}
     </div>
+  </div>
+
   )
 }
 

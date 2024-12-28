@@ -1,5 +1,5 @@
 import express from 'express'
-import { createStore, deletestore, getstoreByName, liststore, removelistproduct, updatelistproduct, updatestore } from '../controllers/storeController.js'
+import { createStore, deletestore, getstoreByName, hash, liststore, prevhash, removelistproduct, updatelistproduct, updatestore } from '../controllers/storeController.js'
 import multer from 'multer'
 
 const storeRoute = express.Router()
@@ -18,6 +18,8 @@ storeRoute.post('/create',upload.single('img'),createStore)
 storeRoute.put('/update',updatestore)
 storeRoute.put('/updatestoredetail',updatelistproduct)
 storeRoute.post('/removelistproduct',removelistproduct)
+storeRoute.put('/hash',hash)
+storeRoute.put('/prevhash',prevhash)
 storeRoute.delete('/delete',deletestore)
 
 export default storeRoute

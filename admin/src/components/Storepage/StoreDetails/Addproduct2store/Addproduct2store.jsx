@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import "./Addproduct2store.css"
 
 const AddProductsToStore = ({ url, namestore }) => {
   const [products, setProducts] = useState([]); // Danh sách sản phẩm từ cơ sở dữ liệu

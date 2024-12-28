@@ -19,7 +19,7 @@
   /* Định dạng tiêu đề */
   .title-store {
     display: grid;
-    grid-template-columns: 100px 1fr 1fr 1fr 1fr 100px;
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     background-color: tomato;
     color: white;
@@ -30,7 +30,7 @@
   /* Định dạng từng dòng dữ liệu */
   .list-table-format {
     display: grid;
-    grid-template-columns: 100px 1fr 1fr 1fr 1fr 100px;
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     gap: 10px;
     padding: 10px 0;

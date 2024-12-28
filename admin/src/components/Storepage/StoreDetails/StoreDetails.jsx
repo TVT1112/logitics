@@ -7,7 +7,7 @@ import './StoreDetails.css'
 const StoreDetails = ({url}) => {
   const { state } = useLocation();
   const [list, setList] = useState({});
-  const [switchbtn, setSwitch] = useState(false);
+  const [switchbtn, setSwitch] = useState(true);
   const [loading, setLoading] = useState(true);
 
   const fetchStoreProducts = async () => {
@@ -47,6 +47,8 @@ const StoreDetails = ({url}) => {
       console.error('Error removing product from store:', error);
     }
   };
+
+  
   
 
   useEffect(() => {
@@ -62,14 +64,12 @@ const StoreDetails = ({url}) => {
     return <div>Loading...</div>;
   }
 
-  /* if (!list || !list.listproduct) {
-    return <div>Không có thông tin nhà kho.</div>;
-  } */
 
   return (
     <div className='storedetail'>
       <button onClick={() => setSwitch(true)}>Danh sách sản phẩm trong kho</button>
       <button onClick={() => setSwitch(false)}>Thêm sản phẩm vào nhà kho</button>
+      
       {switchbtn ? (
         <div>
           <h1>Sản phẩm trong kho: {state.namestore}</h1>
