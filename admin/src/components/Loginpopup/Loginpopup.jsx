@@ -77,6 +77,7 @@ const Loginpopup = ({setShowlogin}) => {
                     <select value={data.type} onChange={onChangeHandler} defaultValue={data.type} name='type'>
                         <option value="Admin" >quản lý toàn bộ chuỗi và chăm sóc khách hàng</option>
                         <option value="storehouser" >quản lý kho</option>
+                        <option value="shipping" >quản lý vận chuyển</option>
                     </select>
                 ):<></>}
             </div>

@@ -12,6 +12,7 @@ import adminuserRouter from "./routes/adminuserRouter.js"
 import storeRoute from "./routes/storeRouter.js"
 import {Server} from 'socket.io'
 import http from 'http'
+import shipRouter from "./routes/shipRouter.js"
 
 
 const PORT=4000
@@ -60,6 +61,7 @@ app.use("/api/note",noteRouter)
 app.use("/api/target",targetRouter)
 app.use("/api/adminuser",adminuserRouter)
 app.use("/api/store",storeRoute)
+app.use("/api/ship",shipRouter)
 
 app.get("/",(req,res)=>{
     res.send("api hoạt động")

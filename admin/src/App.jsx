@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  Chatpage, Loginpopup, Navbar, Notifications, Sidebar, StoreDetails } from './components'
+import {  Chatpage, Createship, Loginpopup, Navbar, Notifications, Sidebar, StoreDetails } from './components'
 import {Routes,Route} from 'react-router-dom'
 import { Add, List, Order, Plan, Store } from './pages'
 import { ToastContainer} from 'react-toastify';
@@ -7,6 +7,7 @@ import { ToastContainer} from 'react-toastify';
 import { useContext } from 'react';
 import { Storecontext } from './context/Storecontext';
 import './App.css'
+import Ship from './pages/Ship/Ship';
 const App = () => {
   const url = "http://localhost:4000"
   const [showLogin,setShowLogin]=useState(false)
@@ -29,7 +30,8 @@ const App = () => {
             <Route path="/store" element={<Store/>}/>
             <Route path='/notifications' element={<Notifications url={url}/>}/>
             <Route path='/storedetail/:id' element={<StoreDetails url={url}/>}/>
-          
+            <Route path='/manageship' element={<Ship url={url}/>}/>
+            <Route path='/createship' element={<Createship url={url}/>}/>
         </Routes>
         {type==""?(
           <h1>Chào mừng bạn đến với trang quản lý</h1>

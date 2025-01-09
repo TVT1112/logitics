@@ -47,6 +47,19 @@ const Sidebar = ({type}) => {
         </NavLink>
         </div>) 
       ):<></>}
+
+      {type==="shipping"?(
+        (<div className='sidebar-options'>
+        <NavLink to='/createship' className='sidebar-option'>
+            <BiPlus className='sidebar-icon'/>
+            <p>Trang tạo đơn vận chuyển</p>
+        </NavLink>
+        <NavLink to='/manageship' className='sidebar-option'>
+            <BiPlus className='sidebar-icon'/>
+            <p>Trang quản lý đơn vận chuyển</p>
+        </NavLink>
+        </div>) 
+      ):<></>}
       
     
     </div>

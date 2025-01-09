@@ -7,7 +7,7 @@ import './StoreDetails.css'
 const StoreDetails = ({url}) => {
   const { state } = useLocation();
   const [list, setList] = useState({});
-  const [switchbtn, setSwitch] = useState(true);
+  const [switchbtn, setSwitch] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchStoreProducts = async () => {

@@ -1,5 +1,5 @@
 .add{
-    width: 70%;
+    width: 60%;
     margin-left: max(5vw,25px);
     margin-top: 50px;
     color: #6d6d6d;
@@ -10,7 +10,7 @@
 
 .add form{
     gap: 20px;
-
+    
 }
 
 .add .flex-col{
