@@ -16,10 +16,10 @@ const Sidebar = ({type}) => {
             <BiBarChartSquare className='sidebar-icon'/>
             <p>Trang lên kế hoạch</p>
         </NavLink>
-        <NavLink to='/notifications' className='sidebar-option'>
+        {/* <NavLink to='/notifications' className='sidebar-option'>
             <BiBell className='sidebar-icon'/>
             <p>Trang thông báo</p>
-        </NavLink>
+        </NavLink> */}
         <NavLink to='/chatpage' className='sidebar-option'>
             <BiBarChartSquare className='sidebar-icon'/>
             <p>Trang nhắn tin</p>

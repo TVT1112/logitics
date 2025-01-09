@@ -32,7 +32,6 @@ const Navbar = ({setShowlogin}) => {
             <div className="navbar-search-icon">
                 <Link to='/cart'><BiBasket className='icon basket'/></Link>
                 <div className={getTotalCartAmount()===0?"":"dot"}>
-                    
                 </div>
             </div>
             {!token?<button onClick={()=>setShowlogin(true)}>Đăng kí</button>:

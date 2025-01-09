@@ -17,9 +17,9 @@ const Notifications = ({ url }) => {
     localStorage.setItem("notifications", JSON.stringify(newNotifications));
   };
 
+
   useEffect(() => {
     loadNotifications(); // Load notifications khi component được render lần đầu
-
     const socket = io(url); // Thay bằng URL chính xác nếu cần
 
     socket.on("connect", () => {
@@ -36,7 +36,6 @@ const Notifications = ({ url }) => {
         return updatedNotifications;
       });
       toast.success(`Đơn hàng mới từ khách hàng: ${order.userId}`)
-      alert(`Đơn hàng mới từ khách hàng: ${order.userId}`);
     });
 
     socket.on("connect_error", (err) => {
