@@ -1,0 +1,101 @@
+/* Task Create Container Styles */
+.task-create-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .task-create-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .task-create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .task-input,
+  .task-textarea,
+  .task-select,
+  .task-date-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: #555555;
+    background: #f9f9f9;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .task-input:focus,
+  .task-textarea:focus,
+  .task-select:focus,
+  .task-date-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+  
+  .task-textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  .task-select {
+    cursor: pointer;
+  }
+  
+  .task-create-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .task-create-button:hover {
+    background: #0056b3;
+  }
+  
+  .task-create-button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .task-create-container {
+      padding: 15px;
+    }
+  
+    .task-create-title {
+      font-size: 1.5rem;
+    }
+  
+    .task-input,
+    .task-textarea,
+    .task-select,
+    .task-date-input {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    .task-create-button {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+  

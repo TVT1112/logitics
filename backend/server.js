@@ -13,6 +13,8 @@ import storeRoute from "./routes/storeRouter.js"
 import {Server} from 'socket.io'
 import http from 'http'
 import shipRouter from "./routes/shipRouter.js"
+import messRouter from "./routes/messageRouter.js"
+import taskRouter from "./routes/taskRouter.js"
 
 
 const PORT=4000
@@ -62,6 +64,8 @@ app.use("/api/target",targetRouter)
 app.use("/api/adminuser",adminuserRouter)
 app.use("/api/store",storeRoute)
 app.use("/api/ship",shipRouter)
+app.use("/api/mess",messRouter)
+app.use("/api/task",taskRouter)
 
 app.get("/",(req,res)=>{
     res.send("api hoạt động")

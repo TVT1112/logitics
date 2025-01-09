@@ -5,7 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid,
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios'
-import {  FileWord, Takenote, Target } from '../../components';
+import {  Createmission, FileWord, ListTask, Takenote, Target } from '../../components';
 
 
 
@@ -14,6 +14,8 @@ const Plan = ({url}) => {
   const [endDate, setEndDate] = useState("");
   const [chartData, setChartData] = useState({});
   const [chartProduct,setProducts]=useState([]);
+  const [countorder,setCountorder] = useState(0)
+  const [totalAmount,setTotalAmount]= useState(0)
   const [switchbtn,setSwitchbtn] = useState(true);
   const [note,settakenote]=useState(true)
 
@@ -57,15 +59,38 @@ const Plan = ({url}) => {
     }
   };
 
+  const fetchCountorder = async ()=>{
+    try {
+      const response = await axios.get(url + "/api/order/getNumberorder",{params:{startDate,endDate}})
+      if(response.data.success){
+        setCountorder(response.data.data)
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
 
+  const fetchTotalAmount = async()=>{
+    try {
+      const response = await axios.get(url + "/api/order/gettotalamount")
+      if(response.data.success){
+        setTotalAmount(response.data.data)
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
 
-    
 
   useEffect(() => {
     fetchStatistics();
     fetchStaticsProduct()
+    fetchCountorder()
+    fetchTotalAmount()
     console.log(chartData)
     console.log(chartProduct)
+    console.log(countorder)
+    console.log(totalAmount)
   }, [startDate, endDate]);
 
 
@@ -197,9 +222,16 @@ const Plan = ({url}) => {
         </BarChart>
         </div>
       )}
-
+      <div className='result_static'>
+        <div className='result_count'>
+          <p className='p_count'>Tổng số đơn hàng: {countorder}</p>
+        </div>
+        <div className='result_amount'>
+          <p className='p_amount'>Tổng doanh thu: {totalAmount}.000 vnđ</p>
+        </div>
+      </div>
       <FileWord startDate={startDate} endDate={endDate} chartProduct={chartProduct}/>
-        <Target url={url}/>
+        {/* <Target url={url}/> */}
         {/* <button onClick={togglenote}>quản lý mục tiêu nhỏ</button>
         {note?(
           <Takenote url={url}/>

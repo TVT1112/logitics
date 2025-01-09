@@ -127,6 +127,44 @@ const getstaticamount =async (req,res)=>{
     }
 }
 
+const countOrdersByDateRange = async (req, res) => {
+  const { startDate, endDate } = req.query;  // Khoảng thời gian từ query parameters
+
+  try {
+      const start = startDate ? new Date(startDate) : new Date("1970-01-01");
+      const end = endDate ? new Date(endDate) : new Date();
+
+      const totalOrdersInRange = await orderModel.countDocuments({
+          date: { $gte: start, $lte: end }
+      });
+
+      res.json({ success: true, data:totalOrdersInRange });
+  } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "Lỗi khi đếm đơn hàng theo thời gian" });
+  }
+};
+
+const getTotalAmount = async (req, res) => {
+  try {
+    const result = await orderModel.aggregate([
+      {
+        $group: {
+          _id: null, // Không nhóm theo trường nào cả
+          totalAmount: { $sum: "$amount" }, // Tính tổng trường `amount`
+        },
+      },
+    ]);
+
+    const totalAmount = result.length > 0 ? result[0].totalAmount : 0; // Nếu không có đơn hàng, trả về 0
+    res.json({ success: true, data:totalAmount });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Lỗi khi tính tổng số tiền" });
+  }
+};
+
+
 const deleteOrder = async (req, res) => {
   try {
       const {orderId} = req.query;  // Lấy ID đơn hàng từ URL parameters
@@ -145,4 +183,4 @@ const deleteOrder = async (req, res) => {
   }
 }
 
-export {placeOrder,userOrders,listOrders,updateStatus,getstatic,getstaticamount,deleteOrder}
+export {placeOrder,userOrders,listOrders,updateStatus,getstatic,getstaticamount,deleteOrder,countOrdersByDateRange,getTotalAmount}

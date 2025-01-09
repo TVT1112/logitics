@@ -114,6 +114,21 @@ td:nth-child(3) {
   color: #888;
 }
 
+.result_static {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+}
+
+.result_static .result_count,.result_amount{
+  background-color: rgb(190, 190, 190);
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 1.2rem;
+}
 
 
 

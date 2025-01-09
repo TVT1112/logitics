@@ -84,7 +84,7 @@ const Order = ({ url }) => {
         value={searchQuery} 
         onChange={handleSearch} 
       />
-
+      <p>bạn có thể tìm kiếm thông qua tên khách hàng, số điện thoại, tên sản phẩm</p>
       {/* Danh sách đơn hàng */}
       {filteredOrders.map((order, index) => (
         <div key={index} className='order-item'>

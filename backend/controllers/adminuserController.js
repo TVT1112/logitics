@@ -61,4 +61,14 @@ const registerUser = async (req,res)=>{
     }
 }
 
-export {loginUser,registerUser}
+const getAlluser = async (req,res)=>{
+    try {
+        const listuser= await adminuserModel.find()
+        res.json({success:true,data:listuser})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:"Lỗi"})
+    }
+}
+
+export {loginUser,registerUser,getAlluser}
