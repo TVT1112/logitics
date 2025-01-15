@@ -1,247 +1,240 @@
-import React from 'react'
-import './Plan.css'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, 
-  Tooltip, Legend} from 'recharts';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import axios from 'axios'
-import {  Createmission, FileWord, ListTask, Takenote, Target } from '../../components';
+import React, { useState, useEffect } from 'react';
+import './Plan.css';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
+import axios from 'axios';
+import { FileWord } from '../../components';
 
-
-
-const Plan = ({url}) => {
+const Plan = ({ url }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [chartData, setChartData] = useState({});
-  const [chartProduct,setProducts]=useState([]);
-  const [countorder,setCountorder] = useState(0)
-  const [totalAmount,setTotalAmount]= useState(0)
-  const [switchbtn,setSwitchbtn] = useState(true);
-  const [note,settakenote]=useState(true)
+  const [chartData, setChartData] = useState([]);
+  const [chartProduct, setChartProduct] = useState([]);
+  const [countOrder, setCountOrder] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [isOrderStats, setIsOrderStats] = useState(true);
+  const [responsetext,setResponsetext]= useState('')
 
-  const togglenote= ()=>{
-    settakenote(!note)
-  }
+  const toggleStats = () => {
+    setIsOrderStats(!isOrderStats);
+  };
 
-  const togglediv = ()=>{
-    setSwitchbtn(!switchbtn)
-  }
-
-
-  const fetchStaticsProduct = async ()=>{
+  const fetchOrderStatistics = async () => {
     try {
-      const response= await axios.get(url+"/api/order/statiticsamount",{params:{startDate,endDate}})
-      console.log(response.data.data)
-      setProducts(response.data.data)
-    } catch (error) {
-      console.error("Error fetching statistics:", error);
-    }
-
-  }
-
-  const fetchStatistics = async () => {
-    try {
-      const response = await axios.get(url+"/api/order/statitics", {
+      const response = await axios.get(`${url}/api/order/statitics`, {
         params: { startDate, endDate },
       });
-
-      console.log("API response:", response.data);
-
       const labels = ["Đang chuẩn bị", "Đã hết sản phẩm", "Đã giao thành công"];
-      const counts = labels.map((label) => {
+      const formattedData = labels.map((label) => {
         const found = response.data.data.find((item) => item._id === label);
         return { name: label, count: found ? found.count : 0 };
       });
-      setChartData(counts);
-      
+      setChartData(formattedData);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching order statistics:", error);
     }
   };
 
-  const fetchCountorder = async ()=>{
+  const fetchProductStatistics = async () => {
     try {
-      const response = await axios.get(url + "/api/order/getNumberorder",{params:{startDate,endDate}})
-      if(response.data.success){
-        setCountorder(response.data.data)
+      const response = await axios.get(`${url}/api/order/statiticsamount`, {
+        params: { startDate, endDate },
+      });
+      setChartProduct(response.data.data);
+    } catch (error) {
+      console.error("Error fetching product statistics:", error);
+    }
+  };
+
+  const fetchOrderCount = async () => {
+    try {
+      const response = await axios.get(`${url}/api/order/getNumberorder`, {
+        params: { startDate, endDate },
+      });
+      if (response.data.success) {
+        setCountOrder(response.data.data);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching order count:", error);
     }
-  }
+  };
 
-  const fetchTotalAmount = async()=>{
+  const fetchTotalAmount = async () => {
     try {
-      const response = await axios.get(url + "/api/order/gettotalamount")
-      if(response.data.success){
-        setTotalAmount(response.data.data)
+      const response = await axios.get(`${url}/api/order/gettotalamount`);
+      if (response.data.success) {
+        setTotalAmount(response.data.data);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching total amount:", error);
     }
-  }
+  };
 
-
-  useEffect(() => {
-    fetchStatistics();
-    fetchStaticsProduct()
-    fetchCountorder()
-    fetchTotalAmount()
-    console.log(chartData)
-    console.log(chartProduct)
-    console.log(countorder)
-    console.log(totalAmount)
-  }, [startDate, endDate]);
-
-
-  return (
-    <div className='plan'>
-
-      <div className='static'>
-      <h2>Trang lên kế hoạch</h2>
-      <div style={{ marginBottom: "20px" }}>
-        <label>
-          Từ ngày:
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </label>
-        <label>
-          Đến ngày:
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </label>
-        <button onClick={fetchStatistics}>Lọc</button>
-      
-        <button onClick={togglediv}>Đổi bảng thống kê</button>
-
-      </div>
-      {switchbtn?(
-        <div>
-        <h3>Trang thống kê đơn hàng theo từng trạng thái</h3>
-        <BarChart
-          width={800}
-          height={300}
-          data={chartData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
-          <CartesianGrid strokeDasharray="5 5" stroke="#ccc" />
-          <XAxis
-            dataKey="name"
-            tick={{ fontSize: 12, fontWeight: "bold" }}
-            stroke="#333"
-          />
-          <YAxis
-            tick={{ fontSize: 12, fontWeight: "bold" }}
-            stroke="#333"
-            allowDecimals={false}
-          />
-          <Tooltip
-            cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
-            contentStyle={{ backgroundColor: "#f5f5f5", borderRadius: "8px" }}
-            labelStyle={{ fontWeight: "bold", color: "#333" }}
-          />
-          <Legend
-            verticalAlign="top"
-            wrapperStyle={{
-              paddingBottom: "10px",
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          />
-          <Bar
-            dataKey="count"
-            fill="url(#gradient)"
-            radius={[10, 10, 0, 0]}
-            barSize={50}
-          />
-          <defs>
-            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8884d8" stopOpacity={1} />
-              <stop offset="100%" stopColor="#8884d8" stopOpacity={0.4} />
-            </linearGradient>
-          </defs>
-        </BarChart>
-        </div>
-      ):(
-        <div>
-        <h3>Trang thống kê sản phẩm theo số lượng và giá trị đã được bán</h3>
-        <BarChart
-          width={800}
-          height={300}
-          data={chartProduct}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
-          <CartesianGrid strokeDasharray="5 5" stroke="#ccc" />
-          <XAxis
-            dataKey="name"
-            tick={{ fontSize: 12, fontWeight: "bold" }}
-            stroke="#333"
-          />
-          <YAxis
-            tick={{ fontSize: 12, fontWeight: "bold" }}
-            stroke="#333"
-            allowDecimals={false}
-          />
-          <Tooltip
-            cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
-            contentStyle={{ backgroundColor: "#f5f5f5", borderRadius: "8px" }}
-            labelStyle={{ fontWeight: "bold", color: "#333" }}
-          />
-          <Legend
-            verticalAlign="top"
-            wrapperStyle={{
-              paddingBottom: "10px",
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          />
-          <Bar
-            dataKey="totalQuantity"
-            fill="url(#gradient)"
-            radius={[10, 10, 0, 0]}
-            barSize={50}
-          />
-          <Bar
-            dataKey="totalValue"
-            fill="url(#gradient)"
-            radius={[10, 10, 0, 0]}
-            barSize={50}
-          />
-          <defs>
-            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8884d8" stopOpacity={1} />
-              <stop offset="100%" stopColor="#8884d8" stopOpacity={0.4} />
-            </linearGradient>
-          </defs>
-        </BarChart>
-        </div>
-      )}
-      <div className='result_static'>
-        <div className='result_count'>
-          <p className='p_count'>Tổng số đơn hàng: {countorder}</p>
-        </div>
-        <div className='result_amount'>
-          <p className='p_amount'>Tổng doanh thu: {totalAmount}.000 vnđ</p>
-        </div>
-      </div>
-      <FileWord startDate={startDate} endDate={endDate} chartProduct={chartProduct}/>
-        {/* <Target url={url}/> */}
-        {/* <button onClick={togglenote}>quản lý mục tiêu nhỏ</button>
-        {note?(
-          <Takenote url={url}/>
-        ):<></>} */}
-       
-
-    </div>
-    </div>
+  const handlechatbot = async (prompt) => {
+    if (!prompt.trim()) return;
 
   
-)}
+    try {
+      const response = await axios.post(url + '/api/chatbot/generate', { prompt: prompt });
+  
+      // Lấy văn bản trả về từ kết quả
+      setResponsetext(response.data.data);
+      console.log(responsetext);  // Văn bản trả về từ API
+    } catch (error) {
+      console.error('Error calling API:', error);
+    }
+  };
+  
 
-export default Plan
+  useEffect(() => {
+    fetchOrderStatistics();
+    fetchProductStatistics();
+    fetchOrderCount();
+    fetchTotalAmount();
+  }, [startDate, endDate]);
+
+  return (
+    <div className="plan">
+      <div className="static">
+        <h2>Trang lên kế hoạch</h2>
+        <div className='filter_day' style={{ marginBottom: "20px" }}>
+          <label>
+            Từ ngày:
+            <input
+              className='from_filter'
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </label>
+          <label>
+            Đến ngày:
+            <input
+              className='to_filter'
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </label>
+          <button className='filter_btn' onClick={fetchOrderStatistics}>Lọc</button>
+          <button className='switch_chart' onClick={toggleStats}>Đổi bảng thống kê</button>
+        </div>
+
+        {isOrderStats ? (
+          <div className='chart'>
+            <h3>Trang thống kê đơn hàng theo từng trạng thái</h3>
+            <BarChart
+              width={800}
+              height={300}
+              data={chartData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            >
+              <CartesianGrid strokeDasharray="5 5" stroke="#ccc" />
+              <XAxis
+                dataKey="name"
+                tick={{ fontSize: 12, fontWeight: "bold" }}
+                stroke="#333"
+              />
+              <YAxis
+                tick={{ fontSize: 12, fontWeight: "bold" }}
+                stroke="#333"
+                allowDecimals={false}
+              />
+              <Tooltip
+                cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
+                contentStyle={{ backgroundColor: "#f5f5f5", borderRadius: "8px" }}
+                labelStyle={{ fontWeight: "bold", color: "#333" }}
+              />
+              <Legend
+                verticalAlign="top"
+                wrapperStyle={{ paddingBottom: "10px", fontSize: "14px", fontWeight: "bold" }}
+              />
+              <Bar
+                dataKey="count"
+                fill="#8884d8"
+                radius={[10, 10, 0, 0]}
+                barSize={50}
+              />
+            </BarChart>
+
+          </div>
+        ) : (
+          <div className='chart'>
+            <h3>Trang thống kê sản phẩm theo số lượng và giá trị đã được bán</h3>
+            <BarChart
+              width={800}
+              height={300}
+              data={chartProduct}
+              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            >
+              <CartesianGrid strokeDasharray="5 5" stroke="#ccc" />
+              <XAxis
+                dataKey="name"
+                tick={{ fontSize: 12, fontWeight: "bold" }}
+                stroke="#333"
+              />
+              <YAxis
+                tick={{ fontSize: 12, fontWeight: "bold" }}
+                stroke="#333"
+                allowDecimals={false}
+              />
+              <Tooltip
+                cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
+                contentStyle={{ backgroundColor: "#f5f5f5", borderRadius: "8px" }}
+                labelStyle={{ fontWeight: "bold", color: "#333" }}
+              />
+              <Legend
+                verticalAlign="top"
+                wrapperStyle={{ paddingBottom: "10px", fontSize: "14px", fontWeight: "bold" }}
+              />
+              <Bar
+                dataKey="totalQuantity"
+                fill="#82ca9d"
+                radius={[10, 10, 0, 0]}
+                barSize={50}
+              />
+              <Bar
+                dataKey="totalValue"
+                fill="#8884d8"
+                radius={[10, 10, 0, 0]}
+                barSize={50}
+              />
+            </BarChart>
+
+          </div>
+        )}
+
+        <div className="result_static">
+          <div className="result_count">
+            <p className="p_count">Tổng số đơn hàng: {countOrder}</p>
+          </div>
+          <div className="result_amount">
+            <p className="p_amount">Tổng doanh thu: {totalAmount}.000 vnđ</p>
+          </div>
+        </div>
+
+        <FileWord startDate={startDate} endDate={endDate} chartProduct={chartProduct} />
+      
+      <div className='chatbot_generate'>
+      <button onClick={()=>handlechatbot(`Từ các dữ liệu: 
+          ${JSON.stringify(chartData)}, 
+          ${JSON.stringify(chartProduct)}, 
+          Tổng doanh thu: ${totalAmount}.000 vnđ. 
+          Hãy lên chiến lược phù hợp trong tương lai với hệ thống logistics này. à vì mình `)}>
+        lên kế hoạch
+      </button>
+
+      <div className='chatbot_result'>
+        {responsetext ? (
+          <pre>{responsetext}</pre>
+        ) : (
+          <p>Hãy bấm vào nút lên kế hoạch để có thể nhờ được sự trợ giúp của chatbot về lên chiến lược.</p>
+        )}
+      </div>
+
+      </div>
+      </div>
+    </div>
+  );
+};
+
+export default Plan;

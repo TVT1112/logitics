@@ -15,6 +15,7 @@ import http from 'http'
 import shipRouter from "./routes/shipRouter.js"
 import messRouter from "./routes/messageRouter.js"
 import taskRouter from "./routes/taskRouter.js"
+import chatbotRouter from "./routes/chatbotRouter.js"
 
 
 const PORT=4000
@@ -24,6 +25,8 @@ app.use(express.json())
 app.use(cors())
 
 const server = http.createServer(app);
+
+
 
 // Tạo Socket.IO server
 const io = new Server(server, {
@@ -66,6 +69,7 @@ app.use("/api/store",storeRoute)
 app.use("/api/ship",shipRouter)
 app.use("/api/mess",messRouter)
 app.use("/api/task",taskRouter)
+app.use("/api/chatbot",chatbotRouter)
 
 app.get("/",(req,res)=>{
     res.send("api hoạt động")

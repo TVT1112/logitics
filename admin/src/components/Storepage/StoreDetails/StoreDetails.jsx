@@ -75,7 +75,7 @@ const StoreDetails = ({url}) => {
           <h1>Sản phẩm trong kho: {state.namestore}</h1>
 
           <div className="list-table-store">
-            <div className="list-table-format title-store">
+            <div className="list-table-format-store title-store">
               <b>Ảnh</b>
               <b>Tên sản phẩm</b>
               <b>Kiểu sản phẩm</b>
@@ -86,11 +86,11 @@ const StoreDetails = ({url}) => {
             {/* Kiểm tra và hiển thị danh sách sản phẩm */}
             {Object.keys(list.listproduct).length > 0 ? (
               Object.entries(list.listproduct).map(([key, item]) => (
-                <div key={key} className="list-table-format">
+                <div key={key} className="list-table-format-store">
                   <img
                     src={`${url}/images/` + item.product.image}
                     alt={item.product.name}
-                    style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                    
                   />
                   <p>{item.product.name}</p>
                   <p>{item.product.category}</p>

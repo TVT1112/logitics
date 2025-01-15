@@ -64,12 +64,12 @@ const Createship = ({url}) => {
       };
     
       const vehicleInfo = {
-        type: "Xe máy",
+        type: "Xe tải",
         licensePlate: "29A-12345",
       };
   return (
     <div className='createship'>
-      <h2 className='title_createship'>Tạo đơn hàng</h2>
+      <h2 className='title_createship'>Tạo đơn vận chuyển</h2>
 
       {/* Tìm kiếm */}
       <div>

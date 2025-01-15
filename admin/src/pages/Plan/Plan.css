@@ -130,6 +130,62 @@ td:nth-child(3) {
   border-radius: 1.2rem;
 }
 
+/* Tạo kiểu cho phần nút bấm */
+.chatbot_generate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Nút bấm "Lên kế hoạch" */
+.chatbot_generate button {
+  background-color: #4CAF50; /* Màu nền nút */
+  color: white;              /* Màu chữ */
+  padding: 10px 20px;        /* Khoảng cách xung quanh */
+  font-size: 16px;           /* Kích thước chữ */
+  border: none;              /* Không có viền */
+  border-radius: 8px;        /* Bo góc */
+  cursor: pointer;          /* Con trỏ chuột thay đổi khi hover */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+.chatbot_generate button:hover {
+  background-color: #45a049; /* Màu nền thay đổi khi hover */
+}
+
+/* Phần kết quả trả về từ chatbot */
+.chatbot_result {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px; /* Giới hạn chiều rộng */
+  padding: 15px;
+  background-color: #f9f9f9; /* Màu nền */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  font-family: 'Courier New', Courier, monospace; /* Chọn font chữ */
+  word-wrap: break-word; /* Cho phép văn bản dài tự động xuống dòng */
+}
+
+.chatbot_result p {
+  font-size: 14px;
+  color: #666; /* Màu chữ cho phần thông báo */
+  text-align: center;
+}
+
+.chatbot_result pre {
+  font-size: 14px;
+  color: #333; /* Màu chữ cho kết quả trả về */
+  white-space: pre-wrap; /* Cho phép ngắt dòng */
+  word-wrap: break-word; /* Cho phép văn bản dài xuống dòng */
+  margin: 0; /* Xóa khoảng cách ngoài */
+  padding: 10px;
+  background-color: #f0f0f0; /* Màu nền cho phần kết quả */
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Đặt viền nhẹ cho phần kết quả */
+}
+
+
 
 
 /* Thêm không gian và hiệu ứng */
